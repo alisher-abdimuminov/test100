@@ -1,0 +1,136 @@
+{% extends 'quiz/base.html' %}
+
+{% block title %}Test — {{ attempt.full_name }}{% endblock %}
+
+{% block content %}
+<header class="sticky top-0 z-10 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-3">
+        <div class="min-w-0">
+            <p class="truncate font-semibold">{{ attempt.full_name }}</p>
+            <p class="text-sm text-slate-500">
+                Javob berildi: <span id="answered">{{ answered_count }}</span> / {{ answers|length }}
+            </p>
+        </div>
+        <div id="timer" class="rounded-lg bg-slate-900 px-4 py-2 font-mono text-xl font-bold tabular-nums text-white">--:--</div>
+    </div>
+</header>
+
+<main class="mx-auto max-w-4xl px-4 py-6">
+    <form id="test-form" method="post" action="{% url 'quiz:submit' %}" class="space-y-4">
+        {% csrf_token %}
+        {% for answer in answers %}
+            {% with q=answer.question %}
+            <section id="q-{{ answer.order }}" class="rounded-xl bg-white p-5 shadow-sm">
+                {% if q.context %}
+                    <details class="mb-4 rounded-lg bg-slate-50 p-4 text-sm leading-relaxed text-slate-700" open>
+                        <summary class="cursor-pointer font-semibold text-slate-500">Matn</summary>
+                        <p class="mt-2">{{ q.context|linebreaksbr }}</p>
+                    </details>
+                {% endif %}
+                <p class="mb-4 font-medium">
+                    <span class="mr-1 text-indigo-600">{{ answer.order }}.</span>
+                    {{ q.text|linebreaksbr }}
+                </p>
+                <div class="grid gap-2 sm:grid-cols-2">
+                    {% for letter, text in q.options %}
+                        <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-200 p-3 hover:bg-slate-50 has-checked:border-indigo-500 has-checked:bg-indigo-50">
+                            <input type="radio" name="q{{ answer.pk }}" value="{{ letter }}"
+                                data-answer="{{ answer.pk }}" data-order="{{ answer.order }}"
+                                class="mt-1 accent-indigo-600"
+                                {% if answer.selected == letter %}checked{% endif %}>
+                            <span><b>{{ letter }})</b> {{ text }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endwith %}
+        {% endfor %}
+
+        <div class="rounded-xl bg-white p-5 shadow-sm">
+            <p class="mb-3 text-sm font-medium text-slate-500">Savollar xaritasi</p>
+            <div class="grid grid-cols-10 gap-1.5">
+                {% for answer in answers %}
+                    <a href="#q-{{ answer.order }}" id="nav-{{ answer.order }}"
+                        class="rounded py-1 text-center text-xs font-semibold {% if answer.selected %}bg-indigo-600 text-white{% else %}bg-slate-200 text-slate-600{% endif %}">
+                        {{ answer.order }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <button type="submit" id="submit-btn"
+            class="w-full rounded-lg bg-emerald-600 px-4 py-3 font-semibold text-white hover:bg-emerald-700">
+            Testni yakunlash
+        </button>
+    </form>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        const form = document.getElementById('test-form');
+        const timerEl = document.getElementById('timer');
+        const answeredEl = document.getElementById('answered');
+        const csrf = form.querySelector('[name=csrfmiddlewaretoken]').value;
+        const saveUrl = "{% url 'quiz:save_answer' %}";
+        const deadline = Date.now() + {{ remaining }} * 1000;
+        let submitting = false;
+
+        function submitForm() {
+            if (submitting) return;
+            submitting = true;
+            form.submit();
+        }
+
+        function tick() {
+            const left = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+            const m = String(Math.floor(left / 60)).padStart(2, '0');
+            const s = String(left % 60).padStart(2, '0');
+            timerEl.textContent = m + ':' + s;
+            if (left <= 300) {
+                timerEl.classList.replace('bg-slate-900', 'bg-red-600');
+            }
+            if (left === 0) {
+                timerEl.textContent = 'Vaqt tugadi';
+                submitForm();
+                return;
+            }
+            setTimeout(tick, 250);
+        }
+        tick();
+
+        form.addEventListener('change', function (e) {
+            const input = e.target;
+            if (input.type !== 'radio') return;
+            const nav = document.getElementById('nav-' + input.dataset.order);
+            nav.classList.remove('bg-slate-200', 'text-slate-600');
+            nav.classList.add('bg-indigo-600', 'text-white');
+            answeredEl.textContent = form.querySelectorAll('input[type=radio]:checked').length;
+
+            const body = new FormData();
+            body.append('answer', input.dataset.answer);
+            body.append('selected', input.value);
+            fetch(saveUrl, {method: 'POST', headers: {'X-CSRFToken': csrf}, body: body})
+                .then(function (r) {
+                    if (r.status === 403) window.location.reload();
+                })
+                .catch(function () {});
+        });
+
+        form.addEventListener('submit', function (e) {
+            if (submitting) return;
+            const total = form.querySelectorAll('section').length;
+            const answered = form.querySelectorAll('input[type=radio]:checked').length;
+            const msg = answered < total
+                ? (total - answered) + ' ta savolga javob berilmagan. Testni yakunlaysizmi?'
+                : 'Testni yakunlaysizmi?';
+            if (!confirm(msg)) {
+                e.preventDefault();
+                return;
+            }
+            submitting = true;
+        });
+    })();
+</script>
+{% endblock %}

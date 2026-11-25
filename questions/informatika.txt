@@ -1,0 +1,212 @@
+FAN: informatics
+
+1. Dars jadvali avval matnda, so‘ng bir xil ma’no saqlangan holda jadvalda berildi. Nima o‘zgardi?
+Axborotning mazmuni
+Axborotning hajmi
+# Axborotning tasvirlanish shakli
+Axborotning tuzilishi
+
+2. Printerlar 20 va 28 sahifa/min tezlikda parallel ishlaydi. 144 sahifa optimal taqsimlansa, jami vaqt qancha?
+6 min
+# 3 min
+4 min
+5 min
+
+3. Arxivdagi hujjatlar yil va mavzu bo‘yicha papkalarga joylandi. Qanday jihat tartibga keltirildi?
+Axborotning hajmi
+Axborotning tasvirlanish shakli
+Axborotning mazmuni
+# Axborotning tuzilishi
+
+4. Excelda «Таблица» obyektiga aylantirilgan oraliqning afzalligi nima?
+Barcha formulalar rasmga aylanadi
+# Ustun nomlari bilan murojaat va qo‘shilgan qatorlarga moslashuvchi tuzilma beradi
+Jadvalni faqat tahrirsiz ko‘rish mumkin
+Har qanday mantiqiy mezon avtomatik olib tashlanadi
+
+5. Jadvaldagi bir yillik o‘zgarishlar grafikda ko‘rsatildi. Bu qanday o‘zgarish?
+# Axborotning tasvirlanish shakli
+Axborotning hajmi
+Axborotning mazmuni
+Axborotning tuzilishi
+
+6. Video 4200 kadrdan iborat. 25 kadr/s tezlikda jami namoyish vaqti necha daqiqa?
+168 min
+5,6 min
+# 2,8 min
+3,05 min
+
+7. Yo‘l ko‘rsatmasi gaplar o‘rniga xaritada belgilandi. Mazmun saqlansa, nima yangilandi?
+# Axborotning tasvirlanish shakli
+Axborotning hajmi
+Axborotning tuzilishi
+Axborotning mazmuni
+
+8. 10.10.15.7/22 manzili qaysi tarmoq manziliga tegishli?
+10.10.11.255
+# 10.10.12.0
+10.10.15.255
+10.10.12.1
+
+9. Ovoz sifatini o‘zgartirmasdan faylni siqish mumkin bo‘ldi. Faylning qaysi o‘lchami kamayadi?
+Axborotning tasvirlanish shakli
+Axborotning tuzilishi
+# Axborotning hajmi
+Axborotning mazmuni
+
+10. Wordning «Печать» oynasida 5–9-sahifalar va 5 nusxa belgilandi. Bir tomonlama chop etishda nechta sahifa chiqadi?
+30 sahifa
+# 25 sahifa
+20 sahifa
+26 sahifa
+
+11. Fayllar ro‘yxatidagi 4 MB va 9 MB yozuvlari nimani taqqoslash imkonini beradi?
+Axborotning tasvirlanish shakli
+# Axborotning hajmi
+Axborotning tuzilishi
+Axborotning mazmuni
+
+12. Modelni validatsiya qilishda natijalar nimaga solishtiriladi?
+Modelning fayl hajmiga
+Foydalanilgan dastur interfeysining tiliga
+# Mustaqil kuzatuv yoki tajriba ma’lumotlariga
+Uning dastlabki rasm nomiga
+
+13. Mazmuni bir xil ikki hisobot turli formatlarda saqlandi. Diskda band qilingan baytlar soni qaysi jihatni ifodalaydi?
+Axborotning mazmuni
+Axborotning tasvirlanish shakli
+Axborotning tuzilishi
+# Axborotning hajmi
+
+14. Optik tolada yorug‘likni yadro ichida ushlab turuvchi asosiy fizik hodisa qaysi?
+Difraksion tarqalish
+# To‘la ichki qaytish
+Tashqi fotoeffekt
+Magnit induksiya
+
+15. So‘rovnoma javoblari aniq belgilangan maydonlarga ajratildi. Nima o‘zgardi?
+Axborotning hajmi
+Axborotning tasvirlanish shakli
+Axborotning mazmuni
+# Axborotning tuzilishi
+
+16. a = 21, b = 6. Avval s ← a × b, keyin s ← s mod 9. s ning yakuniy qiymatini belgilang.
+1
+6
+9
+# 0
+
+17. Xom ma’lumotga birlik va sharoit qo‘shilgach, undan qaror chiqarish mumkin bo‘ldi. Qaysi jihat aniqlandi?
+Axborotning tuzilishi
+# Axborotning mazmuni
+Axborotning hajmi
+Axborotning tasvirlanish shakli
+
+18. PowerPointda «Воспроизводить для всех слайдов» nimaga ta’sir qiladi?
+Taqdimotning barcha rasmlarini videoga almashtiradi
+Har slaydga audio faylning yangi nusxasini yozadi
+Har slaydda audioni boshidan ochadi
+# Keyingi slaydga o‘tilganda joriy audioni davom ettiradi
+
+19. Bir xil «18» yozuvi harorat jurnalida va avtobus jadvalida turli ma’no beradi. Bu tafovut nimaga bog‘liq?
+# Axborotning mazmuni
+Axborotning hajmi
+Axborotning tasvirlanish shakli
+Axborotning tuzilishi
+
+20. Birlamchi va ikkilamchi axborotning farqi nimada?
+Birlamchi axborot doim matnli, ikkilamchi axborot doim raqamli bo‘ladi
+# Birlamchi axborot bevosita olinadi, ikkilamchi axborot mavjud ma’lumotdan hosil qilinadi
+Birlamchi axborot uzatiladi, ikkilamchi axborot faqat saqlanadi
+Birlamchi axborot tahlil natijasi, ikkilamchi axborot xom o‘lchov bo‘ladi
+
+21. «Mashg‘ulot ko‘chirildi» xabarini tushunish uchun qaysi mashg‘ulot nazarda tutilganini bilish kerak. Savol qaysi jihatga taalluqli?
+Axborotning tasvirlanish shakli
+Axborotning hajmi
+# Axborotning mazmuni
+Axborotning tuzilishi
+
+22. IPv4 da /22 prefiksiga qaysi o‘nlik niqob mos?
+255.255.254.0
+255.255.240.0
+255.255.248.0
+# 255.255.252.0
+
+23. Ro‘yxatdagi har bir yozuv familiya, guruh va ball ustunlariga bo‘lindi. Muallif avvalo nimani belgiladi?
+Axborotning mazmuni
+Axborotning hajmi
+# Axborotning tuzilishi
+Axborotning tasvirlanish shakli
+
+24. 8193 baytli fayl 4096 baytli klasterlarda saqlanadi. Faylga jami necha bayt joy ajratiladi?
+8193 bayt
+8192 bayt
+# 12288 bayt
+16384 bayt
+
+25. Aniq ma’lumot tayyorlov kursiga murakkab qisqartmalar bilan berildi. Qaysi xossani oshirish kerak?
+# Tushunarlilik
+Ishonchlilik
+To‘liqlik
+Dolzarblik
+
+26. PowerPointda slayd namoyishi ovozi qaysi holatda televizor yoki videopleyerda eshitilishi mumkin?
+Faqat slaydlar rasm fayli sifatida chiqarilganda
+Taqdimotning fayl nomiga .mp4 yozilganda
+# Taqdimot nutq va vaqt bilan birga video sifatida chiqarilganda
+Slaydlar PDFga chop etilganda
+
+27. Ikki manba bir sanani turlicha ko‘rsatmoqda. Asl hujjatni topish qaysi xossani aniqlashga xizmat qiladi?
+Tushunarlilik
+To‘liqlik
+# Ishonchlilik
+Dolzarblik
+
+28. Veb orqali xat o‘qish bilan SMTP orqali xat yuborish orasidagi farq nimada?
+Brauzer har doim SMTP serveri o‘rnini egallaydi
+SMTP faqat imlo xatosini tuzatishga xizmat qiladi
+Ikkalasi ham bir xil transport protokoli
+# Brauzer veb interfeysga kiradi, SMTP esa pochta uzatish protokoli
+
+29. Kutubxona ish vaqti to‘g‘ri bo‘lgan, ammo u o‘tgan semestrga tegishli. Bugungi tashrif uchun qaysi xossa yetishmaydi?
+Ishonchlilik
+Tushunarlilik
+# Dolzarblik
+To‘liqlik
+
+30. a = 19, b = 13. Avval s ← a × b, keyin s ← s mod 7. s ning yakuniy qiymatini belgilang.
+# 2
+6
+11
+4
+
+31. Bir xil natija sodda diagramma bilan ifodalandi. Talabalar uni tezroq talqin qildi. Qaysi xossa yaxshilandi?
+Dolzarblik
+# Tushunarlilik
+To‘liqlik
+Ishonchlilik
+
+32. IPv4 da /23 tarmoq to‘liq /25 tarmoqlarga ajratilsa, nechta kichik tarmoq hosil bo‘ladi?
+# 4
+2
+6
+8
+
+33. O‘lchovlar jadvali olti haftadan to‘rttasini o‘z ichiga oladi. Umumiy tahlil uchun qaysi jihat yetarli emas?
+Tushunarlilik
+Ishonchlilik
+# To‘liqlik
+Dolzarblik
+
+34. Qaysi qatordagi tashuvchilarning ikkalasi ham ma’lumotni magnit usulda saqlaydi?
+HDD va DVD‑R
+DVD‑R va Blu‑ray
+# HDD va disketa
+Disketa va SSD
+
+35. Tasdiqlanmagan xabarni birlamchi hujjat bilan solishtirish nimani tekshiradi?
+Dolzarblik
+To‘liqlik
+# Ishonchlilik
+Tushunarlilik
+

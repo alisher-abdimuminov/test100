@@ -1,0 +1,17 @@
+[Unit]
+Description=Test100 service
+Requires=test100.socket
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/ali/test100/
+ExecStart=/home/ali/test100/.venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/test100.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

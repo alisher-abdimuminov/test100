@@ -1,0 +1,21 @@
+{% extends 'quiz/base.html' %}
+
+{% block title %}Natija — {{ attempt.full_name }}{% endblock %}
+
+{% block content %}
+<main class="flex min-h-screen items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-lg">
+        <p class="text-sm text-slate-500">Test yakunlandi</p>
+        <h1 class="mt-1 text-2xl font-bold">{{ attempt.full_name }}</h1>
+        <p class="mt-6 text-6xl font-extrabold text-indigo-600">{{ attempt.score }}</p>
+        <p class="mt-1 text-slate-500">{{ total }} balldan</p>
+
+        <form method="post" action="{% url 'quiz:restart' %}" class="mt-8">
+            {% csrf_token %}
+            <button type="submit" class="w-full rounded-lg border border-slate-300 px-4 py-3 font-semibold hover:bg-slate-50">
+                Bosh sahifaga qaytish
+            </button>
+        </form>
+    </div>
+</main>
+{% endblock %}

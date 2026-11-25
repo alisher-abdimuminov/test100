@@ -1,0 +1,8 @@
+[Unit]
+Description=Test100 socket
+
+[Socket]
+ListenStream=/run/test100.sock
+
+[Install]
+WantedBy=sockets.target

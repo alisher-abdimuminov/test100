@@ -1,0 +1,30 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<main class="flex min-h-screen items-center justify-center p-4">
+    <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
+        <h1 class="text-2xl font-bold">Test sinovi</h1>
+        <p class="mt-2 text-sm text-slate-500">
+            {{ total }} ta savol:
+            {% for label, count in counts %}{{ count }} ta {{ label|lower }}{% if not forloop.last %}, {% endif %}{% endfor %}.
+            Vaqt — {{ minutes }} daqiqa. Har bir to'g'ri javob 1 ball.
+        </p>
+
+        <form method="post" class="mt-6 space-y-4">
+            {% csrf_token %}
+            <label for="full_name" class="block text-sm font-medium">Ism familiya</label>
+            <input id="full_name" name="full_name" type="text" value="{{ full_name }}"
+                required minlength="3" maxlength="200" autofocus autocomplete="name"
+                placeholder="Masalan: Aliyev Vali"
+                class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            {% if error %}
+                <p class="text-sm text-red-600">{{ error }}</p>
+            {% endif %}
+            <button type="submit"
+                class="w-full rounded-lg bg-indigo-600 px-4 py-3 font-semibold text-white hover:bg-indigo-700">
+                Testni boshlash
+            </button>
+        </form>
+    </div>
+</main>
+{% endblock %}

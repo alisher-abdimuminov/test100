@@ -1,0 +1,58 @@
+{% extends 'admin/base_site.html' %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Bosh sahifa</a>
+    &rsaquo; <a href="{% url 'admin:quiz_question_changelist' %}">Savollar</a>
+    &rsaquo; TXT dan yuklash
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <p>Bazada hozir:
+        {% for label, count in counts %}<b>{{ label }}</b>: {{ count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+    </p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="module aligned">
+            {% for field in form %}
+                <div class="form-row">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+        </fieldset>
+        <div class="submit-row">
+            <input type="submit" class="default" value="Yuklash">
+        </div>
+    </form>
+
+    <h2>Fayl formati (UTF-8)</h2>
+    <pre style="background:var(--darkened-bg);padding:12px;border-radius:4px;">FAN: english
+
+1. She ______ to school every day.
+go
+# goes
+going
+gone
+
+MATN:
+Bir nechta savolga umumiy matn (reading passage)...
+
+2. Matnga oid savol?
+variant
+# to'g'ri variant
+variant
+variant
+
+MATN TUGADI</pre>
+    <ul>
+        <li>Savollar bo'sh qator bilan ajratiladi; savol matni bir necha qator bo'lishi mumkin.</li>
+        <li>Har savolning oxirgi 4 qatori — variantlar (A, B, C, D), to'g'risi <code>#</code> bilan boshlanadi.</li>
+        <li>Matni bir xil savol qayta yuklansa, dublikat qilinmaydi — variantlari yangilanadi.</li>
+        <li>Faylda bitta xato bo'lsa ham, o'sha fayldan hech narsa saqlanmaydi.</li>
+    </ul>
+</div>
+{% endblock %}
