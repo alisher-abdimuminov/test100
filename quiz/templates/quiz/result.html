@@ -10,6 +10,15 @@
         <p class="mt-6 text-6xl font-extrabold text-indigo-600">{{ attempt.score }}</p>
         <p class="mt-1 text-slate-500">{{ total }} balldan</p>
 
+        <div class="mt-8 divide-y divide-slate-100 rounded-xl border border-slate-200 text-left">
+            {% for label, correct, count in subject_scores %}
+            <div class="flex items-center justify-between px-4 py-3">
+                <span class="font-medium">{{ label }}</span>
+                <span class="font-semibold"><span class="text-indigo-600">{{ correct }}</span> / {{ count }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
         <form method="post" action="{% url 'quiz:restart' %}" class="mt-8">
             {% csrf_token %}
             <button type="submit" class="w-full rounded-lg border border-slate-300 px-4 py-3 font-semibold hover:bg-slate-50">

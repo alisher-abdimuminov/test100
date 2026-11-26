@@ -24,14 +24,13 @@ def _current_attempt(request):
 
 
 def _pick_questions():
-    """Har fandan belgilangan sonda savol oladi va ularni aralashtiradi."""
+    """Har fandan belgilangan sonda savol oladi: fanlar ketma-ket, fan ichida aralash."""
     picked = []
     for subject, count in settings.TEST_SUBJECT_COUNTS.items():
         ids = list(Question.objects.filter(subject=subject).values_list('id', flat=True))
         if len(ids) < count:
             return None
         picked.extend(random.sample(ids, count))
-    random.shuffle(picked)
     return picked
 
 
@@ -80,9 +79,19 @@ def test(request):
         return redirect('quiz:result')
 
     answers = list(attempt.answers.select_related('question'))
+    order = list(settings.TEST_SUBJECT_COUNTS)
+    grouped = {}
+    for answer in answers:
+        grouped.setdefault(answer.question.subject, []).append(answer)
+    keys = sorted(grouped, key=lambda s: order.index(s) if s in order else len(order))
+    sections = [
+        {'key': key, 'label': Subject(key).label, 'answers': grouped[key]}
+        for key in keys
+    ]
     return render(request, 'quiz/test.html', {
         'attempt': attempt,
         'answers': answers,
+        'sections': sections,
         'answered_count': sum(1 for a in answers if a.selected),
         'remaining': attempt.remaining_seconds,
     })
@@ -136,6 +145,7 @@ def result(request):
     return render(request, 'quiz/result.html', {
         'attempt': attempt,
         'total': attempt.total,
+        'subject_scores': attempt.subject_scores(),
     })
 
 

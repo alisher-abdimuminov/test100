@@ -145,7 +145,7 @@ MAILERS = {
 }
 
 # Test sozlamalari
-TEST_DURATION_MINUTES = 60
+TEST_DURATION_MINUTES = 180
 TEST_SUBJECT_COUNTS = {
     'english': 30,
     'informatics': 35,

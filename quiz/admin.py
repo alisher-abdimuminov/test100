@@ -115,6 +115,7 @@ def build_result_txt(attempt):
     lines = [
         f'F.I.Sh: {attempt.full_name}',
         f'Ball: {attempt.score} / {attempt.total}',
+        *[f'  {label}: {correct} / {total}' for label, correct, total in attempt.subject_scores()],
         f'Boshlangan: {timezone.localtime(attempt.started_at):%d.%m.%Y %H:%M:%S}',
         f'Tugagan: {timezone.localtime(attempt.finished_at):%d.%m.%Y %H:%M:%S}' if attempt.finished_at else 'Tugagan: -',
         '',

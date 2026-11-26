@@ -77,6 +77,17 @@ class Attempt(models.Model):
     def total(self):
         return self.answers.count()
 
+    def subject_scores(self):
+        """Fanlar bo'yicha natija: [(fan nomi, to'g'ri, jami), ...] sozlamadagi tartibda."""
+        stats = {}
+        for answer in self.answers.select_related('question'):
+            row = stats.setdefault(answer.question.subject, [0, 0])
+            row[1] += 1
+            if answer.is_correct:
+                row[0] += 1
+        order = list(settings.TEST_SUBJECT_COUNTS) + [s for s in stats if s not in settings.TEST_SUBJECT_COUNTS]
+        return [(Subject(s).label, *stats[s]) for s in order if s in stats]
+
     def finish(self):
         if self.is_finished:
             return

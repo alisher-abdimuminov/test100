@@ -11,16 +11,22 @@
                 Javob berildi: <span id="answered">{{ answered_count }}</span> / {{ answers|length }}
             </p>
         </div>
-        <div id="timer" class="rounded-lg bg-slate-900 px-4 py-2 font-mono text-xl font-bold tabular-nums text-white">--:--</div>
+        <div id="timer" class="rounded-lg bg-slate-900 px-4 py-2 font-mono text-xl font-bold tabular-nums text-white">-:--:--</div>
     </div>
 </header>
 
 <main class="mx-auto max-w-4xl px-4 py-6">
     <form id="test-form" method="post" action="{% url 'quiz:submit' %}" class="space-y-4">
         {% csrf_token %}
-        {% for answer in answers %}
+        {% for section in sections %}
+        <div id="subject-{{ section.key }}" class="space-y-4 scroll-mt-20">
+            <h2 class="sticky top-[68px] z-[5] rounded-lg bg-indigo-600 px-5 py-3 text-lg font-bold text-white shadow">
+                {{ section.label }}
+                <span class="ml-2 text-sm font-normal text-indigo-100">{{ section.answers|length }} ta savol</span>
+            </h2>
+        {% for answer in section.answers %}
             {% with q=answer.question %}
-            <section id="q-{{ answer.order }}" class="rounded-xl bg-white p-5 shadow-sm">
+            <section id="q-{{ answer.order }}" data-question class="rounded-xl bg-white p-5 shadow-sm">
                 {% if q.context %}
                     <details class="mb-4 rounded-lg bg-slate-50 p-4 text-sm leading-relaxed text-slate-700" open>
                         <summary class="cursor-pointer font-semibold text-slate-500">Matn</summary>
@@ -45,17 +51,24 @@
             </section>
             {% endwith %}
         {% endfor %}
+        </div>
+        {% endfor %}
 
-        <div class="rounded-xl bg-white p-5 shadow-sm">
-            <p class="mb-3 text-sm font-medium text-slate-500">Savollar xaritasi</p>
-            <div class="grid grid-cols-10 gap-1.5">
-                {% for answer in answers %}
-                    <a href="#q-{{ answer.order }}" id="nav-{{ answer.order }}"
-                        class="rounded py-1 text-center text-xs font-semibold {% if answer.selected %}bg-indigo-600 text-white{% else %}bg-slate-200 text-slate-600{% endif %}">
-                        {{ answer.order }}
-                    </a>
-                {% endfor %}
+        <div class="space-y-4 rounded-xl bg-white p-5 shadow-sm">
+            <p class="text-sm font-medium text-slate-500">Savollar xaritasi</p>
+            {% for section in sections %}
+            <div>
+                <a href="#subject-{{ section.key }}" class="mb-2 block text-sm font-semibold text-indigo-700">{{ section.label }}</a>
+                <div class="grid grid-cols-10 gap-1.5">
+                    {% for answer in section.answers %}
+                        <a href="#q-{{ answer.order }}" id="nav-{{ answer.order }}"
+                            class="rounded py-1 text-center text-xs font-semibold {% if answer.selected %}bg-indigo-600 text-white{% else %}bg-slate-200 text-slate-600{% endif %}">
+                            {{ answer.order }}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
+            {% endfor %}
         </div>
 
         <button type="submit" id="submit-btn"
@@ -85,9 +98,10 @@
 
         function tick() {
             const left = Math.max(0, Math.round((deadline - Date.now()) / 1000));
-            const m = String(Math.floor(left / 60)).padStart(2, '0');
+            const h = Math.floor(left / 3600);
+            const m = String(Math.floor((left % 3600) / 60)).padStart(2, '0');
             const s = String(left % 60).padStart(2, '0');
-            timerEl.textContent = m + ':' + s;
+            timerEl.textContent = h + ':' + m + ':' + s;
             if (left <= 300) {
                 timerEl.classList.replace('bg-slate-900', 'bg-red-600');
             }
@@ -120,7 +134,7 @@
 
         form.addEventListener('submit', function (e) {
             if (submitting) return;
-            const total = form.querySelectorAll('section').length;
+            const total = form.querySelectorAll('section[data-question]').length;
             const answered = form.querySelectorAll('input[type=radio]:checked').length;
             const msg = answered < total
                 ? (total - answered) + ' ta savolga javob berilmagan. Testni yakunlaysizmi?'
